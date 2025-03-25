@@ -53,12 +53,6 @@ This project demonstrates:
    ```bash
    git clone https://github.com/NavidAhmadiii/Portfolio-Project---Data-Cleaning.git
    ```
-2. Execute SQL scripts in order:
-   - `01_data_cleaning.sql`
-   - `02_analysis.sql`
-3. Review `analysis_results.md` for findings
-
----
 
 ## 📜 License
 This project is licensed under the [MIT License](LICENSE).
