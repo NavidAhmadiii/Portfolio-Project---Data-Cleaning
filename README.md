@@ -1,4 +1,3 @@
-```markdown
 # 📊 SQL Data Analysis Project: Layoff Data Exploration
 
 A demonstration of SQL skills for data cleaning, transformation, and analysis of layoff data.  
