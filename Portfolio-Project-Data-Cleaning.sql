@@ -163,5 +163,57 @@ WHERE `date` = 'NULL'
 ;
 
 alter table layoffs_staging2
-modify column `date` date
+    modify column `date` date
+;
+
+
+-- 3. Null Values or blank values
+
+UPDATE layoffs_staging2
+SET company               = CASE WHEN LOWER(TRIM(company)) = 'null' THEN NULL ELSE company END,
+    location              = CASE WHEN LOWER(TRIM(location)) = 'null' THEN NULL ELSE location END,
+    industry              = CASE WHEN LOWER(TRIM(industry)) = 'null' THEN NULL ELSE industry END,
+    total_laid_off        = CASE WHEN LOWER(TRIM(total_laid_off)) = 'null' THEN NULL ELSE total_laid_off END,
+    percentage_laid_off   = CASE WHEN LOWER(TRIM(percentage_laid_off)) = 'null' THEN NULL ELSE percentage_laid_off END,
+    stage                 = CASE WHEN LOWER(TRIM(stage)) = 'null' THEN NULL ELSE stage END,
+    country               = CASE WHEN LOWER(TRIM(country)) = 'null' THEN NULL ELSE country END,
+    funds_raised_millions = CASE
+                                WHEN LOWER(TRIM(funds_raised_millions)) = 'null' THEN NULL
+                                ELSE funds_raised_millions END
+;
+
+
+
+select *
+from layoffs_staging2
+where total_laid_off is null
+  and percentage_laid_off is null
+;
+
+
+select *
+from layoffs_staging2
+where industry is null
+   or industry = ''
+;
+
+
+select table1.industry, table2.industry
+from layoffs_staging2 as table1
+join layoffs_staging2 as table2
+    on table1.company = table2.company
+where (table1.industry is null or table1.industry = '')
+and table2.industry is not null
+;
+
+update layoffs_staging2
+set industry = null
+where industry = '';
+
+update layoffs_staging2 as table1
+join layoffs_staging2 as table2
+    on table1.company = table2.company
+set table1.industry = table2.industry
+where (table1.industry is null or table1.industry = '')
+and table2.industry is not null
 ;
