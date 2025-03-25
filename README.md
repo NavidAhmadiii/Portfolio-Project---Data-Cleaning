@@ -11,8 +11,6 @@ A demonstration of SQL skills for data cleaning, transformation, and analysis of
 - [Project Overview](#-project-overview)
 - [Dataset](#-dataset)
 - [Technical Skills](#-technical-skills)
-- [SQL Workflow](#-sql-workflow)
-- [Key Insights](#-key-insights)
 - [How to Use](#-how-to-use)
 - [License](#-license)
 
@@ -47,81 +45,6 @@ This project demonstrates:
 
 ---
 
-## ⚙️ SQL Workflow
-
-### 1. Data Cleaning
-```sql
--- Standardize date format
-UPDATE layoffs
-SET date = STR_TO_DATE(date, '%m/%d/%Y');
-
--- Handle missing values
-UPDATE layoffs 
-SET industry = COALESCE(industry, 'Unknown')
-WHERE industry IS NULL;
-
--- Remove duplicates
-WITH CTE AS (
-  SELECT *,
-    ROW_NUMBER() OVER(
-      PARTITION BY company, location, date 
-      ORDER BY total_laid_off DESC
-    ) AS row_num
-  FROM layoffs
-)
-DELETE FROM CTE WHERE row_num > 1;
-```
-
-### 2. Feature Engineering
-```sql
--- Add severity classification
-ALTER TABLE layoffs
-ADD COLUMN severity VARCHAR(20);
-
-UPDATE layoffs
-SET severity = CASE
-    WHEN total_laid_off > 1000 THEN 'Mass Layoff'
-    WHEN total_laid_off BETWEEN 100 AND 1000 THEN 'Medium'
-    ELSE 'Small'
-END;
-```
-
----
-
-## 🔍 Key Insights
-
-### Top 5 Industries Affected
-```sql
-SELECT 
-  industry,
-  SUM(total_laid_off) AS total_laid_off
-FROM cleaned_data
-GROUP BY industry
-ORDER BY total_laid_off DESC
-LIMIT 5;
-```
-
-| Industry       | Total Layoffs |
-|----------------|---------------|
-| Technology     | 45,200        |
-| Retail         | 28,750        |
-| Automotive     | 22,300        |
-
-### Monthly Layoff Trends
-```sql
-SELECT 
-  YEAR(date) AS year,
-  MONTH(date) AS month,
-  SUM(total_laid_off) AS monthly_total
-FROM cleaned_data
-GROUP BY year, month
-ORDER BY year DESC, month DESC;
-```
-
-![Monthly Layoff Trends](results/trend_chart.png) *(Sample Visualization)*
-
----
-
 ## 🚀 How to Use
 1. Clone repository:
    ```bash
@@ -140,7 +63,7 @@ This project is licensed under the [MIT License](LICENSE).
 ---
 
 **📬 Contact Me:**  
-[LinkedIn](https://linkedin.com/in/yourprofile) | [Portfolio](https://yourportfolio.com)  
+[LinkedIn](https://www.linkedin.com/in/navid-ahmadii/)
 ```
 
 Key Features:
