@@ -3,6 +3,13 @@
 A demonstration of SQL skills for data cleaning, transformation, and analysis of layoff data.  
 **GitHub Repository:** [Portfolio Project - Data Cleaning](https://github.com/NavidAhmadiii/Portfolio-Project---Data-Cleaning)
 
+
+![SQL](https://img.shields.io/badge/SQL-Advanced-blue)
+![Data Analysis](https://img.shields.io/badge/Data_Analysis-Exploratory-orange)
+![Database](https://img.shields.io/badge/Database-MySQL-brightgreen)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+
 ## 📌 Table of Contents
 - [Project Overview](#-project-overview)
 - [Dataset](#-dataset)
@@ -60,4 +67,3 @@ This project is licensed under the [MIT License](LICENSE).
 
 **📬 Contact Me:**  
 [LinkedIn](https://www.linkedin.com/in/navid-ahmadii/)
-```
