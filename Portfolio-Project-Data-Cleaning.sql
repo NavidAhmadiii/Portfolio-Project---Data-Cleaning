@@ -98,3 +98,70 @@ where row_num > 1;
 
 select *
 from layoffs_staging2;
+
+
+-- 2. Standardize the Data
+
+select company, trim(company)
+from layoffs_staging2;
+
+
+update layoffs_staging2
+set company = trim(company);
+
+
+select *
+from layoffs_staging2
+where industry like 'Crypto%'
+;
+
+
+update layoffs_staging2
+set industry = 'Crypto'
+where industry like 'Crypto%'
+;
+
+select distinct industry
+from layoffs_staging2
+;
+
+
+select distinct country
+from layoffs_staging2
+order by 1
+;
+
+
+select distinct country, trim(trailing '.' from country)
+from layoffs_staging2
+order by 1
+;
+
+update layoffs_staging2
+set country = trim(trailing '.' from country)
+where country like 'United States%'
+;
+
+select `date`,
+       STR_TO_DATE(`date`, '%m/%d/%Y')
+from layoffs_staging2
+;
+
+
+update layoffs_staging2
+set `date` = STR_TO_DATE(`date`, '%m/%d/%Y')
+where `date` != 'Null'
+;
+
+select `date`
+from layoffs_staging2
+;
+
+UPDATE layoffs_staging2
+SET `date` = NULL
+WHERE `date` = 'NULL'
+;
+
+alter table layoffs_staging2
+modify column `date` date
+;
