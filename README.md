@@ -61,12 +61,3 @@ This project is licensed under the [MIT License](LICENSE).
 **📬 Contact Me:**  
 [LinkedIn](https://www.linkedin.com/in/navid-ahmadii/)
 ```
-
-Key Features:
-1. Ready-to-copy format
-2. Shows both code and business insights
-3. Includes visual markers for technical skills
-4. Mobile-friendly structure
-5. Clear contact section
-
-Simply replace placeholder links/names and add your actual SQL files to the repository.
