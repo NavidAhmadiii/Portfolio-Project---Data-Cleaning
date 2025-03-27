@@ -200,10 +200,10 @@ where industry is null
 
 select table1.industry, table2.industry
 from layoffs_staging2 as table1
-join layoffs_staging2 as table2
-    on table1.company = table2.company
+         join layoffs_staging2 as table2
+              on table1.company = table2.company
 where (table1.industry is null or table1.industry = '')
-and table2.industry is not null
+  and table2.industry is not null
 ;
 
 update layoffs_staging2
@@ -211,11 +211,11 @@ set industry = null
 where industry = '';
 
 update layoffs_staging2 as table1
-join layoffs_staging2 as table2
+    join layoffs_staging2 as table2
     on table1.company = table2.company
 set table1.industry = table2.industry
 where (table1.industry is null or table1.industry = '')
-and table2.industry is not null
+  and table2.industry is not null
 ;
 
 
@@ -224,7 +224,7 @@ and table2.industry is not null
 delete
 from layoffs_staging2
 where total_laid_off is null
-and percentage_laid_off is null
+  and percentage_laid_off is null
 ;
 
 select *
@@ -232,5 +232,5 @@ from layoffs_staging2;
 
 
 alter table layoffs_staging2
-drop column row_num
+    drop column row_num
 ;
